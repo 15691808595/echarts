@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="echarts.min.js"></script>
+    <script src="china.js"></script>
+    <!--china.js请从http://echarts.baidu.com/download-map.html上下载。该页面包含地图数据的两种形式js和json，并且含有各种各样的地图可供选择。-->
+
+</head>
+<body>
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="width: 600px;height:400px;"></div>
+<script type="text/javascript">
+    var myChart = echarts.init(document.getElementById('main'));//获取绘图位置对象
+    function randomData() {
+        return Math.round(Math.random()*1000);
+    }
+    //配置
+    var option = {
+        title: {
+            x:"left",
+            text: '省份分布',
+            textStyle:{
+                fontSize:14
+                ,fontWeight:'normal'
+                ,color:'#565656'
+            }
+            ,left:20
+            ,top:10
+        },
+        tooltip: {
+            trigger: 'item'
+            ,formatter:'{b}<br>浏览量：{c}'
+        },
+
+        visualMap: {
+            min: 0,
+            max: 2500,
+            left:20,
+            bottom:10,
+            text: ['高','低'],// 文本，默认为数值文本
+            color:['#20a0ff','#D2EDFF'],
+            calculable: false
+        },
+        series: [
+            {
+                type: 'map',
+                mapType: 'china',
+                roam: false,
+                data:[
+                    {name: '北京',value: randomData() },
+                    {name: '天津',value: randomData() },
+                    {name: '上海',value: randomData() },
+                    {name: '重庆',value: randomData() },
+                    {name: '河北',value: randomData() },
+                    {name: '安徽',value: randomData() },
+                    {name: '新疆',value: randomData() },
+                    {name: '浙江',value: randomData() },
+                    {name: '江西',value: randomData() },
+                    {name: '山西',value: randomData() },
+                    {name: '内蒙古',value: randomData() },
+                    {name: '吉林',value: randomData() },
+                    {name: '福建',value: randomData() },
+                    {name: '广东',value: randomData() },
+                    {name: '西藏',value: randomData() },
+                    {name: '四川',value: randomData() },
+                    {name: '宁夏',value: randomData() },
+                    {name: '香港',value: randomData() },
+                    {name: '澳门',value: randomData() }
+                ]
+            }
+        ]
+    };
+    //为echarts对象加载数据
+    myChart.setOption(option);
+</script>
+</body>
+</html>
